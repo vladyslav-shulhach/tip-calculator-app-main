@@ -1,0 +1,33 @@
+@use "../abstracts/variables" as *;
+
+body {
+  font-family: $font-family;
+  background-color: $color-grey-200;
+}
+
+header {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+main {
+  border-radius: 24px 24px 0 0;
+  background-color: $color-white;
+  padding: 38px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 38px;
+}
+
+footer {
+  background-color: $color-white;
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
