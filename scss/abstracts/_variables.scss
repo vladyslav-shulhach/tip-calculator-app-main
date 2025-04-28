@@ -1,0 +1,24 @@
+$breakpoint-small: 576px;
+$breakpoint-medium: 768px;
+$breakpoint-large: 1024px;
+$breakpoint-extra-large: 1440px;
+
+$color-green-400: hsl(172, 67%, 45%);
+
+$color-green-900: hsl(183, 100%, 15%);
+$color-grey-500: hsl(186, 14%, 43%);
+$color-grey-400: hsl(184, 14%, 56%);
+$color-grey-200: hsl(185, 41%, 84%);
+$color-grey-50: hsl(189, 47%, 97%);
+$color-white: hsl(0, 100%, 100%);
+
+$font-family: "Space Mono", monospace;
+
+$font-size-xlarge: 1.5rem; // 24px
+$font-size-large: 1.125rem; // 18px
+$font-size-medium: 1rem; // 16px
+$font-size-small: 0.875rem; // 14px
+
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
