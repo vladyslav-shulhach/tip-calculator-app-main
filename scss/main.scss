@@ -3,3 +3,12 @@
 @use "base/reset";
 @use "base/typography";
 @use "base/globals";
+
+@use "components/button";
+@use "components/input";
+@use "components/label";
+
+@use "components/bill";
+@use "components/tip";
+@use "components/people";
+@use "components/result";

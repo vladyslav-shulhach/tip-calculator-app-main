@@ -1,0 +1,25 @@
+@use "../abstracts/variables" as *;
+
+button {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  width: 100%;
+  border-radius: 6px;
+}
+
+.tip__button {
+  background-color: $color-green-900;
+  &:hover {
+    background-color: $color-green-400;
+  }
+  &:focus {
+    background-color: $color-green-400;
+  }
+  &:active {
+    background-color: $color-green-400;
+  }
+}
+
+.result__reset-button {
+  background-color: $color-green-400;
+}

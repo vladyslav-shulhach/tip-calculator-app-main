@@ -1,0 +1,14 @@
+@use "../abstracts/variables" as *;
+
+input {
+  background-color: $color-grey-50;
+  margin-top: 12px;
+  padding: 16px;
+  width: 100%;
+  border-radius: 6px;
+  text-align: right;
+}
+
+.tip__input {
+  margin-top: 0;
+}

@@ -48,15 +48,15 @@
           <button class="tip__button" aria-label="15% tip">15%</button>
           <button class="tip__button" aria-label="25% tip">25%</button>
           <button class="tip__button" aria-label="50% tip">50%</button>
+          <label for="custom-tip-input" class="tip__label">Custom tip</label>
+          <input
+            id="custom-tip-input"
+            class="tip__input"
+            type="number"
+            placeholder="Custom"
+            aria-label="Custom tip percentage"
+          />
         </div>
-        <label for="custom-tip-input" class="tip__label">Custom tip</label>
-        <input
-          id="custom-tip-input"
-          class="tip__input"
-          type="number"
-          placeholder="Custom"
-          aria-label="Custom tip percentage"
-        />
       </section>
       <section class="people">
         <h2 class="people__title">Number of People</h2>
@@ -73,13 +73,17 @@
       </section>
       <section class="result">
         <div class="result__item">
-          <h2 class="result__title">Tip Amount</h2>
-          <p class="result__subtitle">/ person</p>
+          <div class="result__info">
+            <h2 class="result__title">Tip Amount</h2>
+            <p class="result__subtitle">/ person</p>
+          </div>
           <p class="result__value" aria-live="polite">$0.00</p>
         </div>
         <div class="result__item">
-          <h2 class="result__title">Total</h2>
-          <p class="result__subtitle">/ person</p>
+          <div class="result__info">
+            <h2 class="result__title">Total</h2>
+            <p class="result__subtitle">/ person</p>
+          </div>
           <p class="result__value" aria-live="polite">$0.00</p>
         </div>
         <button class="result__reset-button" aria-label="Reset calculator">
