@@ -2,11 +2,12 @@
 
 input {
   background-color: $color-grey-50;
-  margin-top: 12px;
-  padding: 16px;
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.75rem;
   width: 100%;
   border-radius: 6px;
   text-align: right;
+  color: $color-green-900;
 }
 
 .tip__input {
