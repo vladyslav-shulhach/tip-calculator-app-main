@@ -52,26 +52,3 @@ button {
   font-weight: $font-weight-bold;
   color: $color-green-400;
 }
-
-@media (min-width: $breakpoint-medium) {
-  .header__title {
-    font-size: $font-size-large * 1.5;
-  }
-
-  h2 {
-    font-size: $font-size-small * 1.5;
-  }
-
-  input,
-  button {
-    font-size: $font-size-large * 1.5;
-  }
-
-  .result__subtitle {
-    font-size: $font-size-xsmall * 1.5;
-  }
-
-  .result__value {
-    font-size: $font-size-xlarge * 1.5;
-  }
-}
