@@ -141,6 +141,16 @@ footer {
   color: hsl(228, 45%, 44%);
 }
 
+@media (min-width: 576px) {
+  header {
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem;
+  }
+  main {
+    padding: 3.5rem 3rem;
+    gap: 48px;
+  }
+}
 button {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
