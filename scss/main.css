@@ -108,24 +108,6 @@ button {
   color: hsl(172, 67%, 45%);
 }
 
-@media (min-width: 768px) {
-  .header__title {
-    font-size: 2.0625rem;
-  }
-  h2 {
-    font-size: 1.5rem;
-  }
-  input,
-  button {
-    font-size: 2.0625rem;
-  }
-  .result__subtitle {
-    font-size: 1.3125rem;
-  }
-  .result__value {
-    font-size: 2.625rem;
-  }
-}
 body {
   font-family: "Space Mono", monospace;
   background-color: hsl(185, 41%, 84%);
@@ -244,6 +226,12 @@ label {
   display: none;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
 .tip__buttons {
   margin-top: 12px;
   display: grid;
@@ -252,6 +240,12 @@ label {
   gap: 16px;
 }
 
+@media (min-width: 768px) {
+  .tip__buttons {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+  }
+}
 .result {
   padding: 44px 24px 24px 24px;
   border-radius: 12px;
