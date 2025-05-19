@@ -54,3 +54,28 @@ footer {
     gap: 58px;
   }
 }
+
+@media (min-width: $breakpoint-large) {
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  header {
+    margin-top: 5.5rem;
+    margin-bottom: 5.5rem;
+  }
+  main {
+    width: 57.75rem;
+    padding: 3.125rem 3rem;
+    flex-direction: row;
+
+    .form {
+      width: 50%;
+    }
+    .result {
+      width: 50%;
+    }
+  }
+}
