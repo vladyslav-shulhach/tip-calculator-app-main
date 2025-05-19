@@ -108,6 +108,24 @@ button {
   color: hsl(172, 67%, 45%);
 }
 
+@media (min-width: 768px) {
+  .header__title {
+    font-size: 2.0625rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  input,
+  button {
+    font-size: 2.0625rem;
+  }
+  .result__subtitle {
+    font-size: 1.3125rem;
+  }
+  .result__value {
+    font-size: 2.625rem;
+  }
+}
 body {
   font-family: "Space Mono", monospace;
   background-color: hsl(185, 41%, 84%);
@@ -149,6 +167,16 @@ footer {
   main {
     padding: 3.5rem 3rem;
     gap: 48px;
+  }
+}
+@media (min-width: 768px) {
+  header {
+    margin-top: 4.5rem;
+    margin-bottom: 4.5rem;
+  }
+  main {
+    padding: 4.5rem 3rem;
+    gap: 58px;
   }
 }
 button {
