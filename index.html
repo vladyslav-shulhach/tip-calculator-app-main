@@ -29,48 +29,50 @@
       <h1 class="header__title">Spli<br />tter</h1>
     </header>
     <main class="container">
-      <section class="bill">
-        <h2 class="bill__title">Bill</h2>
-        <label for="bill-input" class="bill__label">Enter bill amount</label>
-        <input
-          id="bill-input"
-          class="bill__input"
-          type="number"
-          placeholder="0"
-          aria-label="Bill amount"
-        />
-      </section>
-      <section class="tip">
-        <h2 class="tip__title">Select Tip %</h2>
-        <div class="tip__buttons">
-          <button class="tip__button" aria-label="5% tip">5%</button>
-          <button class="tip__button" aria-label="10% tip">10%</button>
-          <button class="tip__button" aria-label="15% tip">15%</button>
-          <button class="tip__button" aria-label="25% tip">25%</button>
-          <button class="tip__button" aria-label="50% tip">50%</button>
-          <label for="custom-tip-input" class="tip__label">Custom tip</label>
+      <div class="form">
+        <section class="bill">
+          <h2 class="bill__title">Bill</h2>
+          <label for="bill-input" class="bill__label">Enter bill amount</label>
           <input
-            id="custom-tip-input"
-            class="tip__input"
+            id="bill-input"
+            class="bill__input"
             type="number"
-            placeholder="Custom"
-            aria-label="Custom tip percentage"
+            placeholder="0"
+            aria-label="Bill amount"
           />
-        </div>
-      </section>
-      <section class="people">
-        <h2 class="people__title">Number of People</h2>
-        <label for="people-input" class="people__label"
-          >Enter number of people</label
-        >
-        <input
-          id="people-input"
-          class="people__input"
-          type="number"
-          placeholder="0"
-          aria-label="Number of people"
-        />
-      </section>
+        </section>
+        <section class="tip">
+          <h2 class="tip__title">Select Tip %</h2>
+          <div class="tip__buttons">
+            <button class="tip__button" aria-label="5% tip">5%</button>
+            <button class="tip__button" aria-label="10% tip">10%</button>
+            <button class="tip__button" aria-label="15% tip">15%</button>
+            <button class="tip__button" aria-label="25% tip">25%</button>
+            <button class="tip__button" aria-label="50% tip">50%</button>
+            <label for="custom-tip-input" class="tip__label">Custom tip</label>
+            <input
+              id="custom-tip-input"
+              class="tip__input"
+              type="number"
+              placeholder="Custom"
+              aria-label="Custom tip percentage"
+            />
+          </div>
+        </section>
+        <section class="people">
+          <h2 class="people__title">Number of People</h2>
+          <label for="people-input" class="people__label"
+            >Enter number of people</label
+          >
+          <input
+            id="people-input"
+            class="people__input"
+            type="number"
+            placeholder="0"
+            aria-label="Number of people"
+          />
+        </section>
+      </div>
       <section class="result">
         <div class="result__item">
           <div class="result__info">
