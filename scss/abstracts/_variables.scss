@@ -3,23 +3,24 @@ $breakpoint-medium: 768px;
 $breakpoint-large: 1024px;
 $breakpoint-extra-large: 1440px;
 
-$color-green-400: hsl(172, 67%, 45%);
-
 $color-green-900: hsl(183, 100%, 15%);
+$color-green-400: hsl(172, 67%, 45%);
+$color-green-300: hsl(172, 67%, 65%);
 $color-grey-500: hsl(186, 14%, 43%);
 $color-grey-400: hsl(184, 14%, 56%);
 $color-grey-200: hsl(185, 41%, 84%);
 $color-grey-50: hsl(189, 47%, 97%);
 $color-white: hsl(0, 100%, 100%);
+$color-error: hsl(12, 70%, 61%);
+$color-label: $color-grey-500;
+$color-attribution-link: hsl(228, 45%, 44%);
 
 $font-family: "Space Mono", monospace;
-
 $font-size-xlarge: 1.75rem; // 28px
 $font-size-large: 1.375rem; // 22px
 $font-size-medium: 1.25rem; // 20px
 $font-size-small: 1rem; // 16px
 $font-size-xsmall: 0.875rem; // 14px
-
 $font-weight-regular: 400;
 $font-weight-medium: 500;
 $font-weight-bold: 700;
