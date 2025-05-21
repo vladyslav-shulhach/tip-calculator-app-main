@@ -10,7 +10,8 @@ button {
 .tip__button {
   background-color: $color-green-900;
   &:hover {
-    background-color: $color-green-400;
+    background-color: $color-green-300;
+    color: $color-green-900;
   }
   &:focus {
     background-color: $color-green-400;
@@ -22,4 +23,17 @@ button {
 
 .result__reset-button {
   background-color: $color-green-400;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+
+  &:hover:enabled {
+    background-color: $color-green-300;
+  }
+
+  &:disabled {
+    background-color: $color-green-400;
+    color: $color-green-900;
+    cursor: not-allowed;
+    opacity: 0.3;
+  }
 }
