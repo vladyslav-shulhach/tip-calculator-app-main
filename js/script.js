@@ -9,19 +9,13 @@ const totalDisplay = document.querySelector(
   ".result__item:nth-child(2) .result__value"
 );
 const resetButton = document.querySelector(".result__reset-button");
+const peopleErrorLabel = document.querySelector(".people__error-label");
+const peopleInvalidLabel = document.querySelector(".people__invalid-label");
+const billInvalidLabel = document.querySelector(".bill__invalid-label");
 
 let billValue = 0;
 let tipValue = 0;
 let peopleValue = 1;
-
-// === EVENT LISTENERS === //
-billInput.addEventListener("input", handleBillInput);
-tipButtons.forEach((button) =>
-  button.addEventListener("click", handleTipButtonClick)
-);
-customTipInput.addEventListener("input", handleCustomTipInput);
-peopleInput.addEventListener("input", handlePeopleInput);
-resetButton.addEventListener("click", resetCalculator);
 
 // === FUNCTIONS === //
 function handleBillInput() {
@@ -44,11 +38,20 @@ function handleCustomTipInput() {
 }
 
 function handlePeopleInput() {
-  peopleValue = parseInt(peopleInput.value) || 1;
-  if (peopleValue <= 0) {
+  let value = parseInt(peopleInput.value, 10);
+  if (peopleInput.value === "") {
+    // Allow empty, don't force "1"
+    peopleInput.classList.remove("error");
+    peopleErrorLabel.style.display = "none";
+    peopleValue = 0;
+  } else if (value <= 0 || isNaN(value)) {
     peopleInput.classList.add("error");
+    peopleErrorLabel.style.display = "block";
+    peopleValue = 0;
   } else {
     peopleInput.classList.remove("error");
+    peopleErrorLabel.style.display = "none";
+    peopleValue = value;
   }
   calculateResults();
 }
@@ -70,10 +73,150 @@ function resetCalculator() {
   billInput.value = "";
   tipButtons.forEach((button) => button.classList.remove("active"));
   customTipInput.value = "";
-  peopleInput.value = "";
+  peopleInput.value = "1"; // Set to 1 only on reset
   tipAmountDisplay.textContent = "$0.00";
   totalDisplay.textContent = "$0.00";
   billValue = 0;
   tipValue = 0;
   peopleValue = 1;
+  setResetButtonState();
 }
+
+function setResetButtonState() {
+  const isBillEmpty = !billInput.value;
+  const isTipEmpty =
+    !Array.from(tipButtons).some((btn) => btn.classList.contains("active")) &&
+    !customTipInput.value;
+  const isPeopleEmpty = !peopleInput.value;
+  if (isBillEmpty && isTipEmpty && isPeopleEmpty) {
+    resetButton.disabled = true;
+  } else {
+    resetButton.disabled = false;
+  }
+}
+
+// === EVENT LISTENERS === //
+billInput.addEventListener("input", () => {
+  handleBillInput();
+  setResetButtonState();
+});
+tipButtons.forEach((button) =>
+  button.addEventListener("click", (event) => {
+    handleTipButtonClick(event);
+    setResetButtonState();
+  })
+);
+customTipInput.addEventListener("input", () => {
+  handleCustomTipInput();
+  setResetButtonState();
+});
+peopleInput.addEventListener("input", () => {
+  handlePeopleInput();
+  setResetButtonState();
+});
+resetButton.addEventListener("click", () => {
+  resetCalculator();
+  setResetButtonState();
+});
+
+// Remove placeholder when typing for all inputs
+[billInput, customTipInput, peopleInput].forEach((input) => {
+  input.addEventListener("input", function () {
+    if (this.value !== "") {
+      this.removeAttribute("placeholder");
+    } else {
+      if (this === billInput) this.setAttribute("placeholder", "0");
+      if (this === customTipInput) this.setAttribute("placeholder", "Custom");
+      if (this === peopleInput) this.setAttribute("placeholder", "1");
+    }
+  });
+});
+
+// Hide "Custom" placeholder on focus as well
+customTipInput.addEventListener("focus", function () {
+  this.removeAttribute("placeholder");
+});
+customTipInput.addEventListener("blur", function () {
+  if (!this.value) this.setAttribute("placeholder", "Custom");
+});
+
+peopleInput.addEventListener("focus", function () {
+  if (this.value === "1") {
+    this.value = "";
+  }
+});
+
+peopleInput.addEventListener("keydown", function (e) {
+  // Allow: Backspace, Delete, Tab, Escape, Enter, Arrow keys, Home/End
+  if (
+    [46, 8, 9, 27, 13, 110, 190].includes(e.keyCode) ||
+    // Allow: Ctrl/cmd+A/C/V/X/Z
+    ((e.ctrlKey || e.metaKey) && [65, 67, 86, 88, 90].includes(e.keyCode)) ||
+    // Allow: Arrow keys, Home, End
+    (e.keyCode >= 35 && e.keyCode <= 40)
+  ) {
+    peopleInvalidLabel.style.display = "none";
+    return;
+  }
+  // Block: minus, dot, letters, and anything not 0-9
+  if (
+    (e.key.length === 1 && !/[0-9]/.test(e.key)) ||
+    e.key === "-" ||
+    e.key === "." ||
+    e.key === "," ||
+    e.key === "+"
+  ) {
+    e.preventDefault();
+    peopleInvalidLabel.style.display = "inline";
+  } else {
+    peopleInvalidLabel.style.display = "none";
+  }
+});
+
+// Hide invalid label on input (in case of paste, etc)
+peopleInput.addEventListener("input", function () {
+  if (/^\d*$/.test(this.value)) {
+    peopleInvalidLabel.style.display = "none";
+  }
+});
+
+billInput.addEventListener("keydown", function (e) {
+  // Allow: Backspace, Delete, Tab, Escape, Enter, Arrow keys, Home/End, dot (if not already present)
+  if (
+    [46, 8, 9, 27, 13].includes(e.keyCode) ||
+    // Allow: Ctrl/cmd+A/C/V/X/Z
+    ((e.ctrlKey || e.metaKey) && [65, 67, 86, 88, 90].includes(e.keyCode)) ||
+    // Allow: Arrow keys, Home, End
+    (e.keyCode >= 35 && e.keyCode <= 40)
+  ) {
+    billInvalidLabel.style.display = "none";
+    return;
+  }
+  // Allow one dot for decimal
+  if (e.key === "." && !this.value.includes(".")) {
+    billInvalidLabel.style.display = "none";
+    return;
+  }
+  // Block: minus, letters, and anything not 0-9 or dot
+  if (
+    (e.key.length === 1 && !/[0-9.]/.test(e.key)) ||
+    e.key === "-" ||
+    e.key === "," ||
+    (e.key === "." && this.value.includes("."))
+  ) {
+    e.preventDefault();
+    billInvalidLabel.style.display = "inline";
+  } else {
+    billInvalidLabel.style.display = "none";
+  }
+});
+
+// Hide invalid label on input (in case of paste, etc)
+billInput.addEventListener("input", function () {
+  if (/^\d*\.?\d*$/.test(this.value)) {
+    billInvalidLabel.style.display = "none";
+  }
+});
+
+// Initialize reset button state on load
+setResetButtonState();
