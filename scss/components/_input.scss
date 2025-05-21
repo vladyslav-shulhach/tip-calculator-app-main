@@ -8,8 +8,40 @@ input {
   border-radius: 6px;
   text-align: right;
   color: $color-green-900;
+  border: 2px solid transparent;
+  transition: border 0.2s;
+
+  &:focus {
+    outline: none;
+    border: 2px solid $color-green-400;
+  }
+
+  &.error {
+    border: 2px solid $color-error;
+  }
+
+  // Hide placeholder when typing
+  &:not(:placeholder-shown)::-webkit-input-placeholder {
+    color: transparent;
+  }
+  &:not(:placeholder-shown):-ms-input-placeholder {
+    color: transparent;
+  }
+  &:not(:placeholder-shown)::placeholder {
+    color: transparent;
+  }
+
+  &::placeholder {
+    opacity: 1;
+    color: $color-grey-400;
+  }
 }
 
 .tip__input {
   margin-top: 0;
+}
+
+.people__input::placeholder {
+  opacity: 0.6;
+  color: $color-grey-400;
 }
