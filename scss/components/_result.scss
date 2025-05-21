@@ -14,3 +14,16 @@
   align-items: center;
   justify-content: space-between;
 }
+
+@media (min-width: $breakpoint-large) {
+  .result {
+    padding: 58px 38px 40px 38px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .result__value {
+    font-size: $font-size-xlarge * 1.5;
+  }
+}
