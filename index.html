@@ -33,12 +33,18 @@
         <section class="bill">
           <h2 class="bill__title">Bill</h2>
           <label for="bill-input" class="bill__label">Enter bill amount</label>
+          <span class="bill__invalid-label" style="display: none"
+            >Only numbers allowed</span
+          >
           <input
             id="bill-input"
             class="bill__input"
             type="number"
             placeholder="0"
             aria-label="Bill amount"
+            min="0"
+            inputmode="decimal"
+            autocomplete="off"
           />
         </section>
         <section class="tip">
@@ -64,29 +70,38 @@
           <label for="people-input" class="people__label"
             >Enter number of people</label
           >
+          <span class="people__error-label">Can't be zero</span>
+          <span class="people__invalid-label" style="display: none"
+            >Only numbers allowed</span
+          >
           <input
             id="people-input"
             class="people__input"
             type="number"
-            placeholder="0"
+            placeholder="1"
             aria-label="Number of people"
+            min="1"
+            inputmode="numeric"
+            autocomplete="off"
           />
         </section>
       </div>
       <section class="result">
-        <div class="result__item">
-          <div class="result__info">
-            <h2 class="result__title">Tip Amount</h2>
-            <p class="result__subtitle">/ person</p>
+        <div class="result__group">
+          <div class="result__item">
+            <div class="result__info">
+              <h2 class="result__title">Tip Amount</h2>
+              <p class="result__subtitle">/ person</p>
+            </div>
+            <p class="result__value" aria-live="polite">$0.00</p>
           </div>
-          <p class="result__value" aria-live="polite">$0.00</p>
-        </div>
-        <div class="result__item">
-          <div class="result__info">
-            <h2 class="result__title">Total</h2>
-            <p class="result__subtitle">/ person</p>
+          <div class="result__item">
+            <div class="result__info">
+              <h2 class="result__title">Total</h2>
+              <p class="result__subtitle">/ person</p>
+            </div>
+            <p class="result__value" aria-live="polite">$0.00</p>
           </div>
-          <p class="result__value" aria-live="polite">$0.00</p>
         </div>
         <button class="result__reset-button" aria-label="Reset calculator">
           Reset
