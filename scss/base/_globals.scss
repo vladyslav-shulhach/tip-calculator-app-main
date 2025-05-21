@@ -27,13 +27,12 @@ footer {
   font-size: $font-size-small;
   text-align: center;
   a {
-    color: hsl(228, 45%, 44%);
+    color: $color-attribution-link;
     text-decoration: none;
     font-weight: $font-weight-bold;
   }
 }
 
-//Breakpoints
 @media (min-width: $breakpoint-small) {
   header {
     margin-top: 3.5rem;
@@ -69,7 +68,7 @@ footer {
   }
   main {
     width: 57.75rem;
-    padding: 3.125rem 3rem;
+    padding: 32px;
     flex-direction: row;
     border-radius: 24px;
 
