@@ -129,16 +129,16 @@ main {
 }
 
 footer {
-  background-color: hsl(0, 100%, 100%);
-}
-
-.attribution {
-  font-size: 11px;
+  position: absolute;
+  bottom: 0;
+  padding: 1rem;
+  font-size: 1rem;
   text-align: center;
 }
-
-.attribution a {
+footer a {
   color: hsl(228, 45%, 44%);
+  text-decoration: none;
+  font-weight: 700;
 }
 
 @media (min-width: 576px) {
@@ -174,8 +174,9 @@ footer {
   }
   main {
     width: 57.75rem;
-    padding: 3.125rem 3rem;
+    padding: 32px;
     flex-direction: row;
+    border-radius: 24px;
   }
   main .form {
     width: 50%;
@@ -195,7 +196,8 @@ button {
   background-color: hsl(183, 100%, 15%);
 }
 .tip__button:hover {
-  background-color: hsl(172, 67%, 45%);
+  background-color: hsl(172, 67%, 65%);
+  color: hsl(183, 100%, 15%);
 }
 .tip__button:focus {
   background-color: hsl(172, 67%, 45%);
@@ -206,6 +208,17 @@ button {
 
 .result__reset-button {
   background-color: hsl(172, 67%, 45%);
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+}
+.result__reset-button:hover:enabled {
+  background-color: hsl(172, 67%, 65%);
+}
+.result__reset-button:disabled {
+  background-color: hsl(172, 67%, 45%);
+  color: hsl(183, 100%, 15%);
+  cursor: not-allowed;
+  opacity: 0.3;
 }
 
 input {
@@ -216,17 +229,81 @@ input {
   border-radius: 6px;
   text-align: right;
   color: hsl(183, 100%, 15%);
+  border: 2px solid transparent;
+  transition: border 0.2s;
+}
+input:focus {
+  outline: none;
+  border: 2px solid hsl(172, 67%, 45%);
+}
+input.error {
+  border: 2px solid hsl(12, 70%, 61%);
+}
+input:not(:placeholder-shown)::-moz-placeholder {
+  color: transparent;
+}
+input:not(:-moz-placeholder-shown)::placeholder {
+  color: transparent;
+}
+input:not(:placeholder-shown)::placeholder {
+  color: transparent;
+}
+input::-moz-placeholder {
+  opacity: 1;
+  color: hsl(184, 14%, 56%);
+}
+input::placeholder {
+  opacity: 1;
+  color: hsl(184, 14%, 56%);
 }
 
 .tip__input {
   margin-top: 0;
 }
 
+.people__input::-moz-placeholder {
+  opacity: 0.6;
+  color: hsl(184, 14%, 56%);
+}
+
+.people__input::placeholder {
+  opacity: 0.6;
+  color: hsl(184, 14%, 56%);
+}
+
 label {
   display: none;
+  color: hsl(186, 14%, 43%);
+}
+
+.people__error-label {
+  display: none;
+  color: hsl(12, 70%, 61%);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.25em;
+}
+
+.people__invalid-label {
+  display: none;
+  color: hsl(12, 70%, 61%);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.25em;
+  margin-left: 0.5em;
+}
+
+.bill__invalid-label {
+  display: none;
+  color: hsl(12, 70%, 61%);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.25em;
+  margin-left: 0.5em;
 }
 
 .form {
+  padding: 12px 0 12px 12px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -238,6 +315,12 @@ label {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, auto);
   gap: 16px;
+}
+
+.result__group {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 @media (min-width: 768px) {
@@ -259,4 +342,16 @@ label {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+@media (min-width: 1024px) {
+  .result {
+    padding: 58px 38px 40px 38px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .result__value {
+    font-size: 2.625rem;
+  }
 }/*# sourceMappingURL=main.css.map */
