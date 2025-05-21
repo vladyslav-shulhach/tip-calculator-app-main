@@ -1,3 +1,32 @@
+@use "../abstracts/variables" as *;
+
 label {
   display: none;
+  color: $color-label;
+}
+
+.people__error-label {
+  display: none;
+  color: $color-error;
+  font-size: $font-size-small;
+  font-weight: $font-weight-bold;
+  margin-bottom: 0.25em;
+}
+
+.people__invalid-label {
+  display: none;
+  color: $color-error;
+  font-size: $font-size-xsmall;
+  font-weight: $font-weight-medium;
+  margin-bottom: 0.25em;
+  margin-left: 0.5em;
+}
+
+.bill__invalid-label {
+  display: none;
+  color: $color-error;
+  font-size: $font-size-xsmall;
+  font-weight: $font-weight-medium;
+  margin-bottom: 0.25em;
+  margin-left: 0.5em;
 }
