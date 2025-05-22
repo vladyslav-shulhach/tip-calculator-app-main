@@ -3,6 +3,9 @@
 body {
   font-family: $font-family;
   background-color: $color-grey-200;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
@@ -21,11 +24,10 @@ main {
 }
 
 footer {
-  position: absolute;
-  bottom: 0;
   padding: 1rem;
   font-size: $font-size-small;
   text-align: center;
+  flex-shrink: 0;
   a {
     color: $color-attribution-link;
     text-decoration: none;
@@ -68,6 +70,7 @@ footer {
   }
   main {
     width: 57.75rem;
+    height: 30.25rem;
     padding: 32px;
     flex-direction: row;
     border-radius: 24px;
