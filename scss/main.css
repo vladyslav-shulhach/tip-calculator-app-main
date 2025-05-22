@@ -194,6 +194,7 @@ button {
 
 .tip__button {
   background-color: hsl(183, 100%, 15%);
+  transition: background 0.2s, color 0.2s;
 }
 .tip__button:hover {
   background-color: hsl(172, 67%, 65%);
@@ -249,11 +250,11 @@ input:not(:placeholder-shown)::placeholder {
   color: transparent;
 }
 input::-moz-placeholder {
-  opacity: 1;
+  opacity: 0.6;
   color: hsl(184, 14%, 56%);
 }
 input::placeholder {
-  opacity: 1;
+  opacity: 0.6;
   color: hsl(184, 14%, 56%);
 }
 

@@ -9,6 +9,7 @@ button {
 
 .tip__button {
   background-color: $color-green-900;
+  transition: background 0.2s, color 0.2s;
   &:hover {
     background-color: $color-green-300;
     color: $color-green-900;
