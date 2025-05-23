@@ -117,6 +117,7 @@ peopleInput.addEventListener("input", () => {
 resetButton.addEventListener("click", () => {
   resetCalculator();
   setResetButtonState();
+  resetButton.disabled = true; // Ensure disabled state after reset
 });
 
 // Remove placeholder when typing for all inputs
