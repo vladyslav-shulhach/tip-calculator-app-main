@@ -10,6 +10,8 @@ input {
   color: $color-green-900;
   border: 2px solid transparent;
   transition: border 0.2s;
+  font-size: $font-size-large;
+  font-weight: $font-weight-bold;
 
   &:focus {
     outline: none;
@@ -20,7 +22,6 @@ input {
     border: 2px solid $color-error;
   }
 
-  // Hide placeholder when typing
   &:not(:placeholder-shown)::-webkit-input-placeholder {
     color: transparent;
   }
@@ -37,11 +38,53 @@ input {
   }
 }
 
+.input-icon-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  input {
+    width: 100%;
+    display: block;
+  }
+}
+
+.icon-dollar,
+.icon-person {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  z-index: 2;
+  height: 1em;
+
+  svg,
+  img {
+    display: block;
+    width: 1em;
+    height: 1em;
+  }
+}
+
+.bill__input {
+  padding-left: 2.2em;
+  text-align: right;
+}
+
 .tip__input {
   margin-top: 0;
 }
 
-.people__input::placeholder {
-  opacity: 0.6;
-  color: $color-grey-400;
+.people__input {
+  padding-left: 2.2em;
+  text-align: right;
+
+  &::placeholder {
+    opacity: 0.6;
+    color: $color-grey-400;
+  }
 }
