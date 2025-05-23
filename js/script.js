@@ -1,4 +1,4 @@
-// === DOM ELEMENTS === //
+// === DOM ELEMENTS ===
 const billInput = document.getElementById("bill-input");
 const tipButtons = document.querySelectorAll(".tip__button");
 const customTipInput = document.getElementById("custom-tip-input");
@@ -14,12 +14,12 @@ const peopleErrorLabel = document.querySelector(".people__error-label");
 const peopleInvalidLabel = document.querySelector(".people__invalid-label");
 const billInvalidLabel = document.querySelector(".bill__invalid-label");
 
-// === STATE === //
+// === STATE ===
 let billValue = 0;
 let tipValue = 0;
 let peopleValue = 1;
 
-// === FUNCTIONS === //
+// === FUNCTIONS ===
 function handleBillInput() {
   billValue = parseFloat(billInput.value) || 0;
   calculateResults();
