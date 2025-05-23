@@ -1,3 +1,4 @@
+// === DOM ELEMENTS === //
 const billInput = document.getElementById("bill-input");
 const tipButtons = document.querySelectorAll(".tip__button");
 const customTipInput = document.getElementById("custom-tip-input");
@@ -13,6 +14,7 @@ const peopleErrorLabel = document.querySelector(".people__error-label");
 const peopleInvalidLabel = document.querySelector(".people__invalid-label");
 const billInvalidLabel = document.querySelector(".bill__invalid-label");
 
+// === STATE === //
 let billValue = 0;
 let tipValue = 0;
 let peopleValue = 1;
@@ -96,91 +98,12 @@ function setResetButtonState() {
 }
 
 // === EVENT LISTENERS === //
+
+// Bill input
 billInput.addEventListener("input", () => {
   handleBillInput();
   setResetButtonState();
 });
-tipButtons.forEach((button) =>
-  button.addEventListener("click", (event) => {
-    handleTipButtonClick(event);
-    setResetButtonState();
-  })
-);
-customTipInput.addEventListener("input", () => {
-  handleCustomTipInput();
-  setResetButtonState();
-});
-peopleInput.addEventListener("input", () => {
-  handlePeopleInput();
-  setResetButtonState();
-});
-resetButton.addEventListener("click", () => {
-  resetCalculator();
-  setResetButtonState();
-  resetButton.disabled = true; // Ensure disabled state after reset
-});
-
-// Remove placeholder when typing for all inputs
-[billInput, customTipInput, peopleInput].forEach((input) => {
-  input.addEventListener("input", function () {
-    if (this.value !== "") {
-      this.removeAttribute("placeholder");
-    } else {
-      if (this === billInput) this.setAttribute("placeholder", "0");
-      if (this === customTipInput) this.setAttribute("placeholder", "Custom");
-      if (this === peopleInput) this.setAttribute("placeholder", "1");
-    }
-  });
-});
-
-// Hide "Custom" placeholder on focus as well
-customTipInput.addEventListener("focus", function () {
-  this.removeAttribute("placeholder");
-});
-customTipInput.addEventListener("blur", function () {
-  if (!this.value) this.setAttribute("placeholder", "Custom");
-});
-
-peopleInput.addEventListener("focus", function () {
-  if (this.value === "1") {
-    this.value = "";
-  }
-});
-
-peopleInput.addEventListener("keydown", function (e) {
-  // Allow: Backspace, Delete, Tab, Escape, Enter, Arrow keys, Home/End
-  if (
-    [46, 8, 9, 27, 13, 110, 190].includes(e.keyCode) ||
-    // Allow: Ctrl/cmd+A/C/V/X/Z
-    ((e.ctrlKey || e.metaKey) && [65, 67, 86, 88, 90].includes(e.keyCode)) ||
-    // Allow: Arrow keys, Home, End
-    (e.keyCode >= 35 && e.keyCode <= 40)
-  ) {
-    peopleInvalidLabel.style.display = "none";
-    return;
-  }
-  // Block: minus, dot, letters, and anything not 0-9
-  if (
-    (e.key.length === 1 && !/[0-9]/.test(e.key)) ||
-    e.key === "-" ||
-    e.key === "." ||
-    e.key === "," ||
-    e.key === "+"
-  ) {
-    e.preventDefault();
-    peopleInvalidLabel.style.display = "inline";
-  } else {
-    peopleInvalidLabel.style.display = "none";
-  }
-});
-
-// Hide invalid label on input (in case of paste, etc)
-peopleInput.addEventListener("input", function () {
-  if (/^\d*$/.test(this.value)) {
-    peopleInvalidLabel.style.display = "none";
-  }
-});
-
 billInput.addEventListener("keydown", function (e) {
   // Allow: Backspace, Delete, Tab, Escape, Enter, Arrow keys, Home/End, dot (if not already present)
   if (
@@ -211,13 +134,93 @@ billInput.addEventListener("keydown", function (e) {
     billInvalidLabel.style.display = "none";
   }
 });
-
-// Hide invalid label on input (in case of paste, etc)
 billInput.addEventListener("input", function () {
   if (/^\d*\.?\d*$/.test(this.value)) {
     billInvalidLabel.style.display = "none";
   }
 });
 
-// Initialize reset button state on load
+// Tip buttons
+tipButtons.forEach((button) =>
+  button.addEventListener("click", (event) => {
+    handleTipButtonClick(event);
+    setResetButtonState();
+  })
+);
+
+// Custom tip input
+customTipInput.addEventListener("input", () => {
+  handleCustomTipInput();
+  setResetButtonState();
+});
+customTipInput.addEventListener("focus", function () {
+  this.removeAttribute("placeholder");
+});
+customTipInput.addEventListener("blur", function () {
+  if (!this.value) this.setAttribute("placeholder", "Custom");
+});
+
+// People input
+peopleInput.addEventListener("input", () => {
+  handlePeopleInput();
+  setResetButtonState();
+});
+peopleInput.addEventListener("focus", function () {
+  if (this.value === "1") {
+    this.value = "";
+  }
+});
+peopleInput.addEventListener("keydown", function (e) {
+  // Allow: Backspace, Delete, Tab, Escape, Enter, Arrow keys, Home/End
+  if (
+    [46, 8, 9, 27, 13, 110, 190].includes(e.keyCode) ||
+    // Allow: Ctrl/cmd+A/C/V/X/Z
+    ((e.ctrlKey || e.metaKey) && [65, 67, 86, 88, 90].includes(e.keyCode)) ||
+    // Allow: Arrow keys, Home, End
+    (e.keyCode >= 35 && e.keyCode <= 40)
+  ) {
+    peopleInvalidLabel.style.display = "none";
+    return;
+  }
+  // Block: minus, dot, letters, and anything not 0-9
+  if (
+    (e.key.length === 1 && !/[0-9]/.test(e.key)) ||
+    e.key === "-" ||
+    e.key === "." ||
+    e.key === "," ||
+    e.key === "+"
+  ) {
+    e.preventDefault();
+    peopleInvalidLabel.style.display = "inline";
+  } else {
+    peopleInvalidLabel.style.display = "none";
+  }
+});
+peopleInput.addEventListener("input", function () {
+  if (/^\d*$/.test(this.value)) {
+    peopleInvalidLabel.style.display = "none";
+  }
+});
+
+// Remove placeholder when typing for all inputs
+[billInput, customTipInput, peopleInput].forEach((input) => {
+  input.addEventListener("input", function () {
+    if (this.value !== "") {
+      this.removeAttribute("placeholder");
+    } else {
+      if (this === billInput) this.setAttribute("placeholder", "0");
+      if (this === customTipInput) this.setAttribute("placeholder", "Custom");
+      if (this === peopleInput) this.setAttribute("placeholder", "1");
+    }
+  });
+});
+
+// Reset button
+resetButton.addEventListener("click", () => {
+  resetCalculator();
+  setResetButtonState();
+  resetButton.disabled = true; // Ensure disabled state after reset
+});
+
+// === INIT === //
 setResetButtonState();
