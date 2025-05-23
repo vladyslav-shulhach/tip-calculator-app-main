@@ -36,16 +36,38 @@
           <span class="bill__invalid-label" style="display: none"
             >Only numbers allowed</span
           >
-          <input
-            id="bill-input"
-            class="bill__input"
-            type="number"
-            placeholder="0"
-            aria-label="Bill amount"
-            min="0"
-            inputmode="decimal"
-            autocomplete="off"
-          />
+          <div class="input-icon-wrapper">
+            <span class="icon-dollar">
+              <!-- SVG icon for dollar -->
+              <svg
+                width="11"
+                height="17"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <text
+                  x="0"
+                  y="14"
+                  font-size="16"
+                  fill="#9EBBBD"
+                  font-family="Arial"
+                >
+                  $
+                </text>
+              </svg>
+            </span>
+            <input
+              id="bill-input"
+              class="bill__input"
+              type="number"
+              placeholder="0"
+              aria-label="Bill amount"
+              min="0"
+              inputmode="decimal"
+              autocomplete="off"
+            />
+          </div>
         </section>
         <section class="tip">
           <h2 class="tip__title">Select Tip %</h2>
@@ -74,16 +96,40 @@
           <span class="people__invalid-label" style="display: none"
             >Only numbers allowed</span
           >
-          <input
-            id="people-input"
-            class="people__input"
-            type="number"
-            placeholder="1"
-            aria-label="Number of people"
-            min="1"
-            inputmode="numeric"
-            autocomplete="off"
-          />
+          <div class="input-icon-wrapper">
+            <span class="icon-person">
+              <!-- SVG icon for person -->
+              <svg
+                width="13"
+                height="16"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <g fill="none" fill-rule="evenodd">
+                  <circle cx="6.5" cy="4.5" r="4.5" fill="#9EBBBD" />
+                  <rect
+                    x="1"
+                    y="10"
+                    width="11"
+                    height="6"
+                    rx="3"
+                    fill="#9EBBBD"
+                  />
+                </g>
+              </svg>
+            </span>
+            <input
+              id="people-input"
+              class="people__input"
+              type="number"
+              placeholder="1"
+              aria-label="Number of people"
+              min="1"
+              inputmode="numeric"
+              autocomplete="off"
+            />
+          </div>
         </section>
       </div>
       <section class="result">
