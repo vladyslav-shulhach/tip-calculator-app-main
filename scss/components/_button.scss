@@ -5,18 +5,21 @@ button {
   padding-bottom: 0.5rem;
   width: 100%;
   border-radius: 6px;
+  font-size: $font-size-large;
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
 }
 
 .tip__button {
   background-color: $color-green-900;
+  color: $color-white;
   transition: background 0.2s, color 0.2s;
+
   &:hover {
     background-color: $color-green-300;
     color: $color-green-900;
   }
-  &:focus {
-    background-color: $color-green-400;
-  }
+  &:focus,
   &:active {
     background-color: $color-green-400;
   }
@@ -24,6 +27,7 @@ button {
 
 .result__reset-button {
   background-color: $color-green-400;
+  color: $color-green-900;
   transition: background 0.2s, color 0.2s;
   cursor: pointer;
 
