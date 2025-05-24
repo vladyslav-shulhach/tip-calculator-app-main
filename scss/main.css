@@ -193,25 +193,27 @@ button {
   padding-bottom: 0.5rem;
   width: 100%;
   border-radius: 6px;
+  font-size: 1.375rem;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .tip__button {
   background-color: hsl(183, 100%, 15%);
+  color: hsl(0, 100%, 100%);
   transition: background 0.2s, color 0.2s;
 }
 .tip__button:hover {
   background-color: hsl(172, 67%, 65%);
   color: hsl(183, 100%, 15%);
 }
-.tip__button:focus {
-  background-color: hsl(172, 67%, 45%);
-}
-.tip__button:active {
+.tip__button:focus, .tip__button:active {
   background-color: hsl(172, 67%, 45%);
 }
 
 .result__reset-button {
   background-color: hsl(172, 67%, 45%);
+  color: hsl(183, 100%, 15%);
   transition: background 0.2s, color 0.2s;
   cursor: pointer;
 }
@@ -235,6 +237,8 @@ input {
   color: hsl(183, 100%, 15%);
   border: 2px solid transparent;
   transition: border 0.2s;
+  font-size: 1.375rem;
+  font-weight: 700;
 }
 input:focus {
   outline: none;
@@ -261,15 +265,55 @@ input::placeholder {
   color: hsl(184, 14%, 56%);
 }
 
+.input-icon-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.input-icon-wrapper input {
+  width: 100%;
+  display: block;
+}
+
+.icon-dollar,
+.icon-person {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  z-index: 2;
+  height: 1em;
+}
+.icon-dollar svg,
+.icon-dollar img,
+.icon-person svg,
+.icon-person img {
+  display: block;
+  width: 1em;
+  height: 1em;
+}
+
+.bill__input {
+  padding-left: 2.2em;
+  text-align: right;
+}
+
 .tip__input {
   margin-top: 0;
 }
 
+.people__input {
+  padding-left: 2.2em;
+  text-align: right;
+}
 .people__input::-moz-placeholder {
   opacity: 0.6;
   color: hsl(184, 14%, 56%);
 }
-
 .people__input::placeholder {
   opacity: 0.6;
   color: hsl(184, 14%, 56%);
@@ -280,30 +324,14 @@ label {
   color: hsl(186, 14%, 43%);
 }
 
-.people__error-label {
-  display: none;
-  color: hsl(12, 70%, 61%);
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 0.25em;
-}
-
-.people__invalid-label {
-  display: none;
-  color: hsl(12, 70%, 61%);
-  font-size: 0.875rem;
-  font-weight: 500;
-  margin-bottom: 0.25em;
-  margin-left: 0.5em;
-}
-
+.people__error-label,
+.people__invalid-label,
 .bill__invalid-label {
   display: none;
   color: hsl(12, 70%, 61%);
-  font-size: 0.875rem;
-  font-weight: 500;
   margin-bottom: 0.25em;
-  margin-left: 0.5em;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .form {
@@ -341,6 +369,12 @@ label {
   flex-direction: column;
   gap: 24px;
 }
+@media (min-width: 1024px) {
+  .result {
+    padding: 58px 38px 40px 38px;
+    justify-content: space-between;
+  }
+}
 
 .result__item {
   display: flex;
@@ -349,12 +383,6 @@ label {
 }
 
 @media (min-width: 1024px) {
-  .result {
-    padding: 58px 38px 40px 38px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
   .result__value {
     font-size: 2.625rem;
   }
