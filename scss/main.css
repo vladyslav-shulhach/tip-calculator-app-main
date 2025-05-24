@@ -319,11 +319,6 @@ input::placeholder {
   color: hsl(184, 14%, 56%);
 }
 
-label {
-  display: none;
-  color: hsl(186, 14%, 43%);
-}
-
 .people__error-label,
 .people__invalid-label,
 .bill__invalid-label {
@@ -331,6 +326,23 @@ label {
   color: hsl(12, 70%, 61%);
   margin-bottom: 0.25em;
   font-size: 1rem;
+  font-weight: 700;
+}
+
+.input-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.25em;
+}
+
+.input-title-row h2,
+.input-title-row .bill__title,
+.input-title-row .tip__title,
+.input-title-row .people__title {
+  margin: 0;
+  font-size: 1rem;
+  color: hsl(186, 14%, 43%);
   font-weight: 700;
 }
 
