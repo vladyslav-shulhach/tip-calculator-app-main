@@ -1,10 +1,5 @@
 @use "../abstracts/variables" as *;
 
-label {
-  display: none;
-  color: $color-label;
-}
-
 .people__error-label,
 .people__invalid-label,
 .bill__invalid-label {
@@ -12,5 +7,22 @@ label {
   color: $color-error;
   margin-bottom: 0.25em;
   font-size: $font-size-small;
+  font-weight: $font-weight-bold;
+}
+
+.input-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.25em;
+}
+
+.input-title-row h2,
+.input-title-row .bill__title,
+.input-title-row .tip__title,
+.input-title-row .people__title {
+  margin: 0;
+  font-size: $font-size-small;
+  color: $color-label;
   font-weight: $font-weight-bold;
 }
