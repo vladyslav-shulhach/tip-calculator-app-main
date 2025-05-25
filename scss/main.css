@@ -286,15 +286,20 @@ input::placeholder {
   align-items: center;
   pointer-events: none;
   z-index: 2;
-  height: 1em;
+  height: 17px;
 }
 .icon-dollar svg,
 .icon-dollar img,
 .icon-person svg,
 .icon-person img {
   display: block;
-  width: 1em;
-  height: 1em;
+  width: auto;
+  height: 17px;
+  font-family: Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  stroke: #9ebbbd;
+  stroke-width: 0.4;
 }
 
 .bill__input {
