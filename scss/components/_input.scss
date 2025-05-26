@@ -47,6 +47,9 @@ input {
   input {
     width: 100%;
     display: block;
+    height: 48px;
+    line-height: 48px;
+    text-align: right;
   }
 }
 
@@ -54,42 +57,42 @@ input {
 .icon-person {
   position: absolute;
   left: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
   pointer-events: none;
   z-index: 2;
-  height: 17px;
 
   svg,
   img {
     display: block;
-    width: auto;
-    height: 17px;
-    font-family: Arial, sans-serif;
-    font-size: 17px;
-    font-weight: 700;
+    height: 24px;
+    font-size: 18px;
+    font-weight: 500;
     stroke: #9ebbbd;
-    stroke-width: 0.4; // Slightly less thick
+    stroke-width: 0.3;
   }
 }
 
-.bill__input {
-  padding-left: 2.2em;
-  text-align: right;
-}
-
-.tip__input {
-  margin-top: 0;
-}
-
+.bill__input,
 .people__input {
   padding-left: 2.2em;
   text-align: right;
-
+  height: 48px;
+  line-height: 48px;
+  // Vertically center text in input
   &::placeholder {
     opacity: 0.6;
     color: $color-grey-400;
   }
+}
+
+.tip__input {
+  margin-top: 0;
+  height: 48px;
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 48px;
 }
