@@ -199,6 +199,13 @@ button {
 }
 
 .tip__button {
+  height: 48px;
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
   background-color: hsl(183, 100%, 15%);
   color: hsl(0, 100%, 100%);
   transition: background 0.2s, color 0.2s;
@@ -274,54 +281,58 @@ input::placeholder {
 .input-icon-wrapper input {
   width: 100%;
   display: block;
+  height: 48px;
+  line-height: 48px;
+  text-align: right;
 }
 
 .icon-dollar,
 .icon-person {
   position: absolute;
   left: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
   pointer-events: none;
   z-index: 2;
-  height: 17px;
 }
 .icon-dollar svg,
 .icon-dollar img,
 .icon-person svg,
 .icon-person img {
   display: block;
-  width: auto;
-  height: 17px;
-  font-family: Arial, sans-serif;
-  font-size: 17px;
-  font-weight: 700;
+  height: 24px;
+  font-size: 18px;
+  font-weight: 500;
   stroke: #9ebbbd;
-  stroke-width: 0.4;
+  stroke-width: 0.3;
 }
 
-.bill__input {
+.bill__input,
+.people__input {
   padding-left: 2.2em;
   text-align: right;
+  height: 48px;
+  line-height: 48px;
+}
+.bill__input::-moz-placeholder, .people__input::-moz-placeholder {
+  opacity: 0.6;
+  color: hsl(184, 14%, 56%);
+}
+.bill__input::placeholder,
+.people__input::placeholder {
+  opacity: 0.6;
+  color: hsl(184, 14%, 56%);
 }
 
 .tip__input {
   margin-top: 0;
-}
-
-.people__input {
-  padding-left: 2.2em;
-  text-align: right;
-}
-.people__input::-moz-placeholder {
-  opacity: 0.6;
-  color: hsl(184, 14%, 56%);
-}
-.people__input::placeholder {
-  opacity: 0.6;
-  color: hsl(184, 14%, 56%);
+  height: 48px;
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 48px;
 }
 
 .people__error-label,
