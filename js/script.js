@@ -81,6 +81,14 @@ function resetCalculator() {
   billValue = 0;
   tipValue = 0;
   peopleValue = 1;
+
+  // Hide error/invalid labels and remove error classes
+  billInput.classList.remove("error");
+  peopleInput.classList.remove("error");
+  billInvalidLabel.style.display = "none";
+  peopleErrorLabel.style.display = "none";
+  peopleInvalidLabel.style.display = "none";
+
   setResetButtonState();
 }
 
