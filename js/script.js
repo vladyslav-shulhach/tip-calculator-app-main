@@ -89,6 +89,11 @@ function resetCalculator() {
   peopleErrorLabel.style.display = "none";
   peopleInvalidLabel.style.display = "none";
 
+  // Ensure custom tip placeholder is restored
+  if (!customTipInput.value) {
+    customTipInput.setAttribute("placeholder", "Custom");
+  }
+
   setResetButtonState();
 }
 
