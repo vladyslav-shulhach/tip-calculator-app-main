@@ -165,18 +165,18 @@ footer a {
 }
 @media (min-width: 1024px) {
   body {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
   header {
-    margin-top: 5.5rem;
-    margin-bottom: 5.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
   }
   main {
     width: 57.75rem;
-    height: 30.25rem;
     padding: 32px;
     flex-direction: row;
     border-radius: 24px;
@@ -186,6 +186,18 @@ footer a {
   }
   main .result {
     width: 50%;
+  }
+}
+@media (min-width: 1024px) and (min-height: 700px) {
+  header {
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem;
+  }
+}
+@media (min-width: 1024px) and (min-height: 1000px) {
+  header {
+    margin-top: 5.5rem;
+    margin-bottom: 5.5rem;
   }
 }
 button {
@@ -214,8 +226,9 @@ button {
   background-color: hsl(172, 67%, 65%);
   color: hsl(183, 100%, 15%);
 }
-.tip__button:focus, .tip__button:active {
+.tip__button.active {
   background-color: hsl(172, 67%, 45%);
+  color: hsl(183, 100%, 15%);
 }
 
 .result__reset-button {
@@ -329,10 +342,12 @@ input::placeholder {
   padding-bottom: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
   box-sizing: border-box;
-  text-align: center;
   line-height: 48px;
+}
+.tip__input.active {
+  border: 2px solid hsl(172, 67%, 45%);
+  color: hsl(183, 100%, 15%);
 }
 
 .people__error-label,
@@ -340,7 +355,6 @@ input::placeholder {
 .bill__invalid-label {
   display: none;
   color: hsl(12, 70%, 61%);
-  margin-bottom: 0.25em;
   font-size: 1rem;
   font-weight: 700;
 }
@@ -349,7 +363,6 @@ input::placeholder {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.25em;
 }
 
 .input-title-row h2,
