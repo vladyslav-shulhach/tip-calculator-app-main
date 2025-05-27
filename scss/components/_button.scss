@@ -26,9 +26,9 @@ button {
     background-color: $color-green-300;
     color: $color-green-900;
   }
-  &:focus,
-  &:active {
+  &.active {
     background-color: $color-green-400;
+    color: $color-green-900;
   }
 }
 
