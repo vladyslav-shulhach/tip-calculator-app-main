@@ -5,7 +5,6 @@
 .bill__invalid-label {
   display: none;
   color: $color-error;
-  margin-bottom: 0.25em;
   font-size: $font-size-small;
   font-weight: $font-weight-bold;
 }
@@ -14,7 +13,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.25em;
 }
 
 .input-title-row h2,
