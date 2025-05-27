@@ -172,6 +172,44 @@ customTipInput.addEventListener("focus", function () {
 customTipInput.addEventListener("blur", function () {
   if (!this.value) this.setAttribute("placeholder", "Custom");
 });
+// Prevent invalid input for custom tip (only one dot, no minus, no letters)
+customTipInput.addEventListener("keydown", function (e) {
+  // Allow: Backspace, Delete, Tab, Escape, Enter, Arrow keys, Home/End
+  if (
+    [46, 8, 9, 27, 13].includes(e.keyCode) ||
+    // Allow: Ctrl/cmd+A/C/V/X/Z
+    ((e.ctrlKey || e.metaKey) && [65, 67, 86, 88, 90].includes(e.keyCode)) ||
+    // Allow: Arrow keys, Home, End
+    (e.keyCode >= 35 && e.keyCode <= 40)
+  ) {
+    return;
+  }
+  // Allow one dot for decimal
+  if (e.key === "." && !this.value.includes(".")) {
+    return;
+  }
+  // Block: minus, letters, and anything not 0-9 or dot
+  if (
+    (e.key.length === 1 && !/[0-9.]/.test(e.key)) ||
+    e.key === "-" ||
+    e.key === "," ||
+    (e.key === "." && this.value.includes("."))
+  ) {
+    e.preventDefault();
+  }
+});
+customTipInput.addEventListener("input", function () {
+  // Remove any invalid characters (allow only digits and one dot)
+  let val = this.value;
+  // Remove all except digits and dots
+  val = val.replace(/[^0-9.]/g, "");
+  // Only keep the first dot
+  const parts = val.split(".");
+  if (parts.length > 2) {
+    val = parts[0] + "." + parts.slice(1).join("");
+  }
+  this.value = val;
+});
 
 // People input
 peopleInput.addEventListener("input", () => {
@@ -186,7 +224,7 @@ peopleInput.addEventListener("focus", function () {
 peopleInput.addEventListener("keydown", function (e) {
   // Allow: Backspace, Delete, Tab, Escape, Enter, Arrow keys, Home/End
   if (
-    [46, 8, 9, 27, 13, 110, 190].includes(e.keyCode) ||
+    [46, 8, 9, 27, 13].includes(e.keyCode) ||
     // Allow: Ctrl/cmd+A/C/V/X/Z
     ((e.ctrlKey || e.metaKey) && [65, 67, 86, 88, 90].includes(e.keyCode)) ||
     // Allow: Arrow keys, Home, End
@@ -195,7 +233,7 @@ peopleInput.addEventListener("keydown", function (e) {
     peopleInvalidLabel.style.display = "none";
     return;
   }
-  // Block: minus, dot, letters, and anything not 0-9
+  // Block: minus, dot, plus, letters, and anything not 0-9
   if (
     (e.key.length === 1 && !/[0-9]/.test(e.key)) ||
     e.key === "-" ||
@@ -210,9 +248,9 @@ peopleInput.addEventListener("keydown", function (e) {
   }
 });
 peopleInput.addEventListener("input", function () {
-  if (/^\d*$/.test(this.value)) {
-    peopleInvalidLabel.style.display = "none";
-  }
+  // Remove any non-digit characters
+  this.value = this.value.replace(/[^0-9]/g, "");
+  peopleInvalidLabel.style.display = "none";
 });
 
 // Remove placeholder when typing for all inputs
