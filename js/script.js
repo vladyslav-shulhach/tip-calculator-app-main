@@ -36,6 +36,12 @@ function handleTipButtonClick(event) {
 function handleCustomTipInput() {
   tipButtons.forEach((button) => button.classList.remove("active"));
   tipValue = parseFloat(customTipInput.value) / 100 || 0;
+  // Toggle active class for custom tip input
+  if (customTipInput.value) {
+    customTipInput.classList.add("active");
+  } else {
+    customTipInput.classList.remove("active");
+  }
   calculateResults();
 }
 
@@ -75,6 +81,7 @@ function resetCalculator() {
   billInput.value = "";
   tipButtons.forEach((button) => button.classList.remove("active"));
   customTipInput.value = "";
+  customTipInput.classList.remove("active"); // Remove active state on reset
   peopleInput.value = "1"; // Set to 1 only on reset
   tipAmountDisplay.textContent = "$0.00";
   totalDisplay.textContent = "$0.00";

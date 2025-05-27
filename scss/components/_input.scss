@@ -91,8 +91,11 @@ input {
   padding-bottom: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
   box-sizing: border-box;
-  text-align: center;
   line-height: 48px;
+
+  &.active {
+    border: 2px solid $color-green-400;
+    color: $color-green-900;
+  }
 }
