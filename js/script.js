@@ -19,6 +19,15 @@ let billValue = 0;
 let tipValue = 0;
 let peopleValue = 1;
 
+// === HELPERS ===
+function setDisplay(el, show) {
+  el.style.display = show ? "inline" : "none";
+}
+function clearInputError(input, label) {
+  input.classList.remove("error");
+  setDisplay(label, false);
+}
+
 // === FUNCTIONS ===
 function handleBillInput() {
   billValue = parseFloat(billInput.value) || 0;
@@ -29,36 +38,29 @@ function handleTipButtonClick(event) {
   tipButtons.forEach((button) => button.classList.remove("active"));
   event.target.classList.add("active");
   tipValue = parseFloat(event.target.textContent.replace("%", "")) / 100;
-  customTipInput.value = ""; // Clear custom tip input
+  customTipInput.value = "";
+  customTipInput.classList.remove("active");
   calculateResults();
 }
 
 function handleCustomTipInput() {
   tipButtons.forEach((button) => button.classList.remove("active"));
   tipValue = parseFloat(customTipInput.value) / 100 || 0;
-  // Toggle active class for custom tip input
-  if (customTipInput.value) {
-    customTipInput.classList.add("active");
-  } else {
-    customTipInput.classList.remove("active");
-  }
+  customTipInput.classList.toggle("active", !!customTipInput.value);
   calculateResults();
 }
 
 function handlePeopleInput() {
   let value = parseInt(peopleInput.value, 10);
   if (peopleInput.value === "") {
-    // Allow empty, don't force "1"
-    peopleInput.classList.remove("error");
-    peopleErrorLabel.style.display = "none";
+    clearInputError(peopleInput, peopleErrorLabel);
     peopleValue = 0;
   } else if (value <= 0 || isNaN(value)) {
     peopleInput.classList.add("error");
-    peopleErrorLabel.style.display = "block";
+    setDisplay(peopleErrorLabel, true);
     peopleValue = 0;
   } else {
-    peopleInput.classList.remove("error");
-    peopleErrorLabel.style.display = "none";
+    clearInputError(peopleInput, peopleErrorLabel);
     peopleValue = value;
   }
   calculateResults();
@@ -68,7 +70,6 @@ function calculateResults() {
   if (peopleValue > 0) {
     const tipAmount = (billValue * tipValue) / peopleValue;
     const total = (billValue + billValue * tipValue) / peopleValue;
-
     tipAmountDisplay.textContent = `$${tipAmount.toFixed(2)}`;
     totalDisplay.textContent = `$${total.toFixed(2)}`;
   } else {
@@ -81,26 +82,18 @@ function resetCalculator() {
   billInput.value = "";
   tipButtons.forEach((button) => button.classList.remove("active"));
   customTipInput.value = "";
-  customTipInput.classList.remove("active"); // Remove active state on reset
-  peopleInput.value = "1"; // Set to 1 only on reset
+  customTipInput.classList.remove("active");
+  peopleInput.value = "1";
   tipAmountDisplay.textContent = "$0.00";
   totalDisplay.textContent = "$0.00";
   billValue = 0;
   tipValue = 0;
   peopleValue = 1;
-
-  // Hide error/invalid labels and remove error classes
-  billInput.classList.remove("error");
-  peopleInput.classList.remove("error");
-  billInvalidLabel.style.display = "none";
-  peopleErrorLabel.style.display = "none";
-  peopleInvalidLabel.style.display = "none";
-
-  // Ensure custom tip placeholder is restored
-  if (!customTipInput.value) {
+  clearInputError(billInput, billInvalidLabel);
+  clearInputError(peopleInput, peopleErrorLabel);
+  setDisplay(peopleInvalidLabel, false);
+  if (!customTipInput.value)
     customTipInput.setAttribute("placeholder", "Custom");
-  }
-
   setResetButtonState();
 }
 
@@ -110,11 +103,7 @@ function setResetButtonState() {
     !Array.from(tipButtons).some((btn) => btn.classList.contains("active")) &&
     !customTipInput.value;
   const isPeopleEmpty = !peopleInput.value;
-  if (isBillEmpty && isTipEmpty && isPeopleEmpty) {
-    resetButton.disabled = true;
-  } else {
-    resetButton.disabled = false;
-  }
+  resetButton.disabled = isBillEmpty && isTipEmpty && isPeopleEmpty;
 }
 
 // === EVENT LISTENERS === //
@@ -125,23 +114,18 @@ billInput.addEventListener("input", () => {
   setResetButtonState();
 });
 billInput.addEventListener("keydown", function (e) {
-  // Allow: Backspace, Delete, Tab, Escape, Enter, Arrow keys, Home/End, dot (if not already present)
   if (
     [46, 8, 9, 27, 13].includes(e.keyCode) ||
-    // Allow: Ctrl/cmd+A/C/V/X/Z
     ((e.ctrlKey || e.metaKey) && [65, 67, 86, 88, 90].includes(e.keyCode)) ||
-    // Allow: Arrow keys, Home, End
     (e.keyCode >= 35 && e.keyCode <= 40)
   ) {
-    billInvalidLabel.style.display = "none";
+    setDisplay(billInvalidLabel, false);
     return;
   }
-  // Allow one dot for decimal
   if (e.key === "." && !this.value.includes(".")) {
-    billInvalidLabel.style.display = "none";
+    setDisplay(billInvalidLabel, false);
     return;
   }
-  // Block: minus, letters, and anything not 0-9 or dot
   if (
     (e.key.length === 1 && !/[0-9.]/.test(e.key)) ||
     e.key === "-" ||
@@ -149,15 +133,13 @@ billInput.addEventListener("keydown", function (e) {
     (e.key === "." && this.value.includes("."))
   ) {
     e.preventDefault();
-    billInvalidLabel.style.display = "inline";
+    setDisplay(billInvalidLabel, true);
   } else {
-    billInvalidLabel.style.display = "none";
+    setDisplay(billInvalidLabel, false);
   }
 });
 billInput.addEventListener("input", function () {
-  if (/^\d*\.?\d*$/.test(this.value)) {
-    billInvalidLabel.style.display = "none";
-  }
+  if (/^\d*\.?\d*$/.test(this.value)) setDisplay(billInvalidLabel, false);
 });
 
 // Tip buttons
@@ -170,6 +152,11 @@ tipButtons.forEach((button) =>
 
 // Custom tip input
 customTipInput.addEventListener("input", () => {
+  // Remove any invalid characters (allow only digits and one dot)
+  let val = customTipInput.value.replace(/[^0-9.]/g, "");
+  const parts = val.split(".");
+  if (parts.length > 2) val = parts[0] + "." + parts.slice(1).join("");
+  customTipInput.value = val;
   handleCustomTipInput();
   setResetButtonState();
 });
@@ -179,23 +166,15 @@ customTipInput.addEventListener("focus", function () {
 customTipInput.addEventListener("blur", function () {
   if (!this.value) this.setAttribute("placeholder", "Custom");
 });
-// Prevent invalid input for custom tip (only one dot, no minus, no letters)
 customTipInput.addEventListener("keydown", function (e) {
-  // Allow: Backspace, Delete, Tab, Escape, Enter, Arrow keys, Home/End
   if (
     [46, 8, 9, 27, 13].includes(e.keyCode) ||
-    // Allow: Ctrl/cmd+A/C/V/X/Z
     ((e.ctrlKey || e.metaKey) && [65, 67, 86, 88, 90].includes(e.keyCode)) ||
-    // Allow: Arrow keys, Home, End
     (e.keyCode >= 35 && e.keyCode <= 40)
   ) {
     return;
   }
-  // Allow one dot for decimal
-  if (e.key === "." && !this.value.includes(".")) {
-    return;
-  }
-  // Block: minus, letters, and anything not 0-9 or dot
+  if (e.key === "." && !this.value.includes(".")) return;
   if (
     (e.key.length === 1 && !/[0-9.]/.test(e.key)) ||
     e.key === "-" ||
@@ -205,42 +184,33 @@ customTipInput.addEventListener("keydown", function (e) {
     e.preventDefault();
   }
 });
-customTipInput.addEventListener("input", function () {
-  // Remove any invalid characters (allow only digits and one dot)
-  let val = this.value;
-  // Remove all except digits and dots
-  val = val.replace(/[^0-9.]/g, "");
-  // Only keep the first dot
-  const parts = val.split(".");
-  if (parts.length > 2) {
-    val = parts[0] + "." + parts.slice(1).join("");
-  }
-  this.value = val;
-});
 
 // People input
-peopleInput.addEventListener("input", () => {
+peopleInput.addEventListener("input", function () {
+  // Show invalid message if dot is present
+  if (this.value.includes(".")) {
+    peopleInvalidLabel.textContent = "Only whole numbers allowed";
+    setDisplay(peopleInvalidLabel, true);
+  } else {
+    setDisplay(peopleInvalidLabel, false);
+  }
+  // Remove any non-digit characters
+  this.value = this.value.replace(/[^0-9]/g, "");
   handlePeopleInput();
   setResetButtonState();
 });
 peopleInput.addEventListener("focus", function () {
-  if (this.value === "1") {
-    this.value = "";
-  }
+  if (this.value === "1") this.value = "";
 });
 peopleInput.addEventListener("keydown", function (e) {
-  // Allow: Backspace, Delete, Tab, Escape, Enter, Arrow keys, Home/End
   if (
     [46, 8, 9, 27, 13].includes(e.keyCode) ||
-    // Allow: Ctrl/cmd+A/C/V/X/Z
     ((e.ctrlKey || e.metaKey) && [65, 67, 86, 88, 90].includes(e.keyCode)) ||
-    // Allow: Arrow keys, Home, End
     (e.keyCode >= 35 && e.keyCode <= 40)
   ) {
-    peopleInvalidLabel.style.display = "none";
+    setDisplay(peopleInvalidLabel, false);
     return;
   }
-  // Block: minus, dot, plus, letters, and anything not 0-9
   if (
     (e.key.length === 1 && !/[0-9]/.test(e.key)) ||
     e.key === "-" ||
@@ -249,15 +219,11 @@ peopleInput.addEventListener("keydown", function (e) {
     e.key === "+"
   ) {
     e.preventDefault();
-    peopleInvalidLabel.style.display = "inline";
+    peopleInvalidLabel.textContent = "Only whole numbers allowed";
+    setDisplay(peopleInvalidLabel, true);
   } else {
-    peopleInvalidLabel.style.display = "none";
+    setDisplay(peopleInvalidLabel, false);
   }
-});
-peopleInput.addEventListener("input", function () {
-  // Remove any non-digit characters
-  this.value = this.value.replace(/[^0-9]/g, "");
-  peopleInvalidLabel.style.display = "none";
 });
 
 // Remove placeholder when typing for all inputs
@@ -277,7 +243,7 @@ peopleInput.addEventListener("input", function () {
 resetButton.addEventListener("click", () => {
   resetCalculator();
   setResetButtonState();
-  resetButton.disabled = true; // Ensure disabled state after reset
+  resetButton.disabled = true;
 });
 
 // === INIT === //
