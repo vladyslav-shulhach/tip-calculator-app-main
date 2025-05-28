@@ -56,18 +56,12 @@ input {
 .icon-dollar,
 .icon-person {
   position: absolute;
-  left: 16px;
-  pointer-events: none;
-  z-index: 2;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-30%);
 
-  svg,
   img {
-    display: block;
-    height: 24px;
-    font-size: 18px;
-    font-weight: 500;
-    stroke: #9ebbbd;
-    stroke-width: 0.3;
+    height: 1.3rem;
   }
 }
 
