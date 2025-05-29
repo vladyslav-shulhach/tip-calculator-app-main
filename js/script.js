@@ -27,6 +27,10 @@ function clearInputError(input, label) {
   input.classList.remove("error");
   setDisplay(label, false);
 }
+function clearPeopleInputErrors() {
+  setDisplay(peopleErrorLabel, false);
+  setDisplay(peopleInvalidLabel, false);
+}
 
 // === FUNCTIONS ===
 function handleBillInput() {
@@ -52,15 +56,18 @@ function handleCustomTipInput() {
 
 function handlePeopleInput() {
   let value = parseInt(peopleInput.value, 10);
+  clearPeopleInputErrors();
   if (peopleInput.value === "") {
-    clearInputError(peopleInput, peopleErrorLabel);
+    peopleValue = 0;
+  } else if (peopleInput.value.includes(".")) {
+    peopleInvalidLabel.textContent = "Only numbers allowed";
+    setDisplay(peopleInvalidLabel, true);
     peopleValue = 0;
   } else if (value <= 0 || isNaN(value)) {
-    peopleInput.classList.add("error");
+    peopleErrorLabel.textContent = "Can't be zero";
     setDisplay(peopleErrorLabel, true);
     peopleValue = 0;
   } else {
-    clearInputError(peopleInput, peopleErrorLabel);
     peopleValue = value;
   }
   calculateResults();
@@ -187,15 +194,13 @@ customTipInput.addEventListener("keydown", function (e) {
 
 // People input
 peopleInput.addEventListener("input", function () {
-  // Show invalid message if dot is present
+  // Remove any non-digit characters except dot
+  this.value = this.value.replace(/[^0-9.]/g, "");
+  clearPeopleInputErrors();
   if (this.value.includes(".")) {
-    peopleInvalidLabel.textContent = "Only whole numbers allowed";
+    peopleInvalidLabel.textContent = "Only numbers allowed";
     setDisplay(peopleInvalidLabel, true);
-  } else {
-    setDisplay(peopleInvalidLabel, false);
   }
-  // Remove any non-digit characters
-  this.value = this.value.replace(/[^0-9]/g, "");
   handlePeopleInput();
   setResetButtonState();
 });
@@ -219,10 +224,11 @@ peopleInput.addEventListener("keydown", function (e) {
     e.key === "+"
   ) {
     e.preventDefault();
-    peopleInvalidLabel.textContent = "Only whole numbers allowed";
+    clearPeopleInputErrors();
+    peopleInvalidLabel.textContent = "Only numbers allowed";
     setDisplay(peopleInvalidLabel, true);
   } else {
-    setDisplay(peopleInvalidLabel, false);
+    clearPeopleInputErrors();
   }
 });
 
