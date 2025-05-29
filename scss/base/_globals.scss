@@ -6,93 +6,93 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
 
-header {
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
-  text-align: center;
-}
-
-main {
-  border-radius: 24px 24px 0 0;
-  background-color: $color-white;
-  padding: 2.25rem 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 38px;
-}
-
-footer {
-  padding: 1rem;
-  font-size: $font-size-small;
-  text-align: center;
-  flex-shrink: 0;
-
-  a {
-    color: $color-attribution-link;
-    text-decoration: none;
-    font-weight: $font-weight-bold;
-  }
-}
-
-@media (min-width: $breakpoint-small) {
   header {
-    margin-top: 3.5rem;
-    margin-bottom: 3.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    text-align: center;
   }
-  main {
-    padding: 3.5rem 3rem;
-    gap: 48px;
-  }
-}
 
-@media (min-width: $breakpoint-medium) {
-  header {
-    margin-top: 4.5rem;
-    margin-bottom: 4.5rem;
-  }
   main {
-    padding: 4.5rem 3rem;
-    gap: 58px;
+    border-radius: 24px 24px 0 0;
+    background-color: $color-white;
+    padding: 2.25rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 38px;
   }
-}
 
-@media (min-width: $breakpoint-large) {
-  body {
+  footer {
+    padding: 1rem;
+    font-size: $font-size-small;
+    text-align: center;
+    flex-shrink: 0;
+
+    a {
+      color: $color-attribution-link;
+      text-decoration: none;
+      font-weight: $font-weight-bold;
+    }
+  }
+
+  @media (min-width: $breakpoint-small) {
+    header {
+      margin-top: 3.5rem;
+      margin-bottom: 3.5rem;
+    }
+    main {
+      padding: 3.5rem 3rem;
+      gap: 48px;
+    }
+  }
+
+  @media (min-width: $breakpoint-medium) {
+    header {
+      margin-top: 4.5rem;
+      margin-bottom: 4.5rem;
+    }
+    main {
+      padding: 4.5rem 3rem;
+      gap: 58px;
+    }
+  }
+
+  @media (min-width: $breakpoint-large) {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
-  header {
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  main {
-    width: 57.75rem;
-    padding: 32px;
-    flex-direction: row;
-    border-radius: 24px;
 
-    .form {
-      width: 50%;
-    }
-    .result {
-      width: 50%;
-    }
-  }
-  @media (min-height: 700px) {
     header {
-      margin-top: 3.5rem;
-      margin-bottom: 3.5rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
     }
-  }
-  @media (min-height: 1000px) {
-    header {
-      margin-top: 5.5rem;
-      margin-bottom: 5.5rem;
+    main {
+      width: 57.75rem;
+      padding: 32px;
+      flex-direction: row;
+      border-radius: 24px;
+
+      .form {
+        width: 50%;
+      }
+      .result {
+        width: 50%;
+      }
+    }
+
+    @media (min-height: 700px) {
+      header {
+        margin-top: 3.5rem;
+        margin-bottom: 3.5rem;
+      }
+    }
+    @media (min-height: 1000px) {
+      header {
+        margin-top: 5.5rem;
+        margin-bottom: 5.5rem;
+      }
     }
   }
 }
