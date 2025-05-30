@@ -340,21 +340,11 @@ input::placeholder {
   color: hsl(183, 100%, 15%);
 }
 
-.people__error-label,
-.people__invalid-label,
-.bill__invalid-label {
-  display: none;
-  color: hsl(12, 70%, 61%);
-  font-size: 1rem;
-  font-weight: 700;
-}
-
 .input-title-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-
 .input-title-row h2,
 .input-title-row .bill__title,
 .input-title-row .tip__title,
@@ -362,6 +352,15 @@ input::placeholder {
   margin: 0;
   font-size: 1rem;
   color: hsl(186, 14%, 43%);
+  font-weight: 700;
+}
+
+.people__error-label,
+.people__invalid-label,
+.bill__invalid-label {
+  display: none;
+  color: hsl(12, 70%, 61%);
+  font-size: 1rem;
   font-weight: 700;
 }
 

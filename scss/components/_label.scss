@@ -1,26 +1,26 @@
 @use "../abstracts/variables" as *;
 
+.input-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h2,
+  .bill__title,
+  .tip__title,
+  .people__title {
+    margin: 0;
+    font-size: $font-size-small;
+    color: $color-label;
+    font-weight: $font-weight-bold;
+  }
+}
+
 .people__error-label,
 .people__invalid-label,
 .bill__invalid-label {
   display: none;
   color: $color-error;
   font-size: $font-size-small;
-  font-weight: $font-weight-bold;
-}
-
-.input-title-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.input-title-row h2,
-.input-title-row .bill__title,
-.input-title-row .tip__title,
-.input-title-row .people__title {
-  margin: 0;
-  font-size: $font-size-small;
-  color: $color-label;
   font-weight: $font-weight-bold;
 }
