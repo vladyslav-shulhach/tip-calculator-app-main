@@ -406,13 +406,11 @@ input::placeholder {
     justify-content: space-between;
   }
 }
-
 .result__item {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-
 @media (min-width: 1024px) {
   .result__value {
     font-size: 2.625rem;

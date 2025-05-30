@@ -12,16 +12,16 @@
     padding: 58px 38px 40px 38px;
     justify-content: space-between;
   }
-}
 
-.result__item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-.result__value {
-  @media (min-width: $breakpoint-large) {
-    font-size: $font-size-xlarge * 1.5;
+  &__value {
+    @media (min-width: $breakpoint-large) {
+      font-size: $font-size-xlarge * 1.5;
+    }
   }
 }
