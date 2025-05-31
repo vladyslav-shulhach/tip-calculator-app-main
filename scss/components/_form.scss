@@ -5,25 +5,27 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-}
 
-.tip__buttons {
-  margin-top: 12px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(3, auto);
-  gap: 16px;
-}
+  .tip__buttons {
+    margin-top: 12px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, auto);
+    gap: 16px;
+  }
 
-.result__group {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+  .result__group {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
 }
 
 @media (min-width: $breakpoint-medium) {
-  .tip__buttons {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, auto);
+  .form {
+    .tip__buttons {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, auto);
+    }
   }
 }
