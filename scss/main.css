@@ -91,17 +91,14 @@ button {
 .result__reset-button {
   color: hsl(183, 100%, 15%);
 }
-
 .result__title {
   color: hsl(0, 100%, 100%);
 }
-
 .result__subtitle {
   font-size: 0.875rem;
   font-weight: 400;
   color: hsl(184, 14%, 56%);
 }
-
 .result__value {
   font-size: 1.75rem;
   font-weight: 700;
@@ -370,23 +367,21 @@ input::placeholder {
   flex-direction: column;
   gap: 24px;
 }
-
-.tip__buttons {
+.form .tip__buttons {
   margin-top: 12px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, auto);
   gap: 16px;
 }
-
-.result__group {
+.form .result__group {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
 @media (min-width: 768px) {
-  .tip__buttons {
+  .form .tip__buttons {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, auto);
   }
