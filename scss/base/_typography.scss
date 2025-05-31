@@ -33,22 +33,21 @@ button {
   color: $color-white;
 }
 
-.result__reset-button {
-  color: $color-green-900;
-}
-
-.result__title {
-  color: $color-white;
-}
-
-.result__subtitle {
-  font-size: $font-size-xsmall;
-  font-weight: $font-weight-regular;
-  color: $color-grey-400;
-}
-
-.result__value {
-  font-size: $font-size-xlarge;
-  font-weight: $font-weight-bold;
-  color: $color-green-400;
+.result {
+  &__reset-button {
+    color: $color-green-900;
+  }
+  &__title {
+    color: $color-white;
+  }
+  &__subtitle {
+    font-size: $font-size-xsmall;
+    font-weight: $font-weight-regular;
+    color: $color-grey-400;
+  }
+  &__value {
+    font-size: $font-size-xlarge;
+    font-weight: $font-weight-bold;
+    color: $color-green-400;
+  }
 }
