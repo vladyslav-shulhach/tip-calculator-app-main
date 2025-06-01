@@ -104,5 +104,4 @@ This approach provides immediate feedback and prevents invalid form submissions,
 
 ## Author
 
-- Website - [Vladyslav](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
+- Frontend Mentor - [Vladyslav Shulhach](https://www.frontendmentor.io/profile/vladyslav-shulhach)
