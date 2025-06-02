@@ -23,6 +23,7 @@ body {
   }
 
   footer {
+    background-color: $color-white;
     padding: 1rem;
     font-size: $font-size-small;
     text-align: center;
@@ -80,6 +81,10 @@ body {
       .result {
         width: 50%;
       }
+    }
+
+    footer {
+      background-color: transparent;
     }
 
     @media (min-height: 700px) {
