@@ -194,13 +194,13 @@ customTipInput.addEventListener("keydown", function (e) {
 
 // People input
 peopleInput.addEventListener("input", function () {
-  // Remove any non-digit characters except dot
-  this.value = this.value.replace(/[^0-9.]/g, "");
-  clearPeopleInputErrors();
-  if (this.value.includes(".")) {
-    peopleInvalidLabel.textContent = "Only numbers allowed";
-    setDisplay(peopleInvalidLabel, true);
+  // Remove any non-digit characters
+  this.value = this.value.replace(/[^0-9]/g, "");
+  // Prevent multiple leading zeros
+  if (this.value.length > 1 && this.value.startsWith("0")) {
+    this.value = this.value.replace(/^0+/, "");
   }
+  clearPeopleInputErrors();
   handlePeopleInput();
   setResetButtonState();
 });
