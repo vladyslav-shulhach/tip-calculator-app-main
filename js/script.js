@@ -32,6 +32,16 @@ function clearPeopleInputErrors() {
   setDisplay(peopleInvalidLabel, false);
 }
 
+// Utility: filter allowed characters for numeric/decimal input
+function filterNumericInput(value, allowDecimal = false) {
+  let filtered = value.replace(allowDecimal ? /[^0-9.]/g : /[^0-9]/g, "");
+  if (allowDecimal) {
+    const parts = filtered.split(".");
+    if (parts.length > 2) filtered = parts[0] + "." + parts.slice(1).join("");
+  }
+  return filtered;
+}
+
 // === FUNCTIONS ===
 function handleBillInput() {
   billValue = parseFloat(billInput.value) || 0;
@@ -194,12 +204,10 @@ customTipInput.addEventListener("keydown", function (e) {
 
 // People input
 peopleInput.addEventListener("input", function () {
-  // Remove any non-digit characters
-  this.value = this.value.replace(/[^0-9]/g, "");
-  // Prevent multiple leading zeros
-  if (this.value.length > 1 && this.value.startsWith("0")) {
-    this.value = this.value.replace(/^0+/, "");
-  }
+  // Only digits, no leading zeros (except single zero)
+  let val = filterNumericInput(this.value, false);
+  if (val.length > 1) val = val.replace(/^0+/, "");
+  this.value = val;
   clearPeopleInputErrors();
   handlePeopleInput();
   setResetButtonState();
@@ -208,21 +216,27 @@ peopleInput.addEventListener("focus", function () {
   if (this.value === "1") this.value = "";
 });
 peopleInput.addEventListener("keydown", function (e) {
+  // Allow navigation, editing, and shortcuts
   if (
-    [46, 8, 9, 27, 13].includes(e.keyCode) ||
-    ((e.ctrlKey || e.metaKey) && [65, 67, 86, 88, 90].includes(e.keyCode)) ||
-    (e.keyCode >= 35 && e.keyCode <= 40)
+    e.ctrlKey ||
+    e.metaKey ||
+    [
+      "Backspace",
+      "Delete",
+      "Tab",
+      "Escape",
+      "Enter",
+      "ArrowLeft",
+      "ArrowRight",
+      "Home",
+      "End",
+    ].includes(e.key)
   ) {
     setDisplay(peopleInvalidLabel, false);
     return;
   }
-  if (
-    (e.key.length === 1 && !/[0-9]/.test(e.key)) ||
-    e.key === "-" ||
-    e.key === "." ||
-    e.key === "," ||
-    e.key === "+"
-  ) {
+  // Only allow digits
+  if (!/[0-9]/.test(e.key)) {
     e.preventDefault();
     clearPeopleInputErrors();
     peopleInvalidLabel.textContent = "Only numbers allowed";
