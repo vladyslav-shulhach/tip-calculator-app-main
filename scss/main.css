@@ -366,7 +366,6 @@ input::placeholder {
 }
 
 .form {
-  padding: 12px 0 12px 12px;
   display: flex;
   flex-direction: column;
   gap: 24px;
