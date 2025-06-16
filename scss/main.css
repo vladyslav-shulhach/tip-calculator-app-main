@@ -407,6 +407,7 @@ input::placeholder {
 @media (min-width: 1024px) {
   .result {
     padding: 58px 38px 40px 38px;
+    height: 24.5rem;
     justify-content: space-between;
   }
 }
