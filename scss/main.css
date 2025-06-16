@@ -129,7 +129,7 @@ body main {
 body footer {
   background-color: hsl(0, 100%, 100%);
   padding: 1rem;
-  font-size: 1rem;
+  font-size: 0.875rem;
   text-align: center;
   flex-shrink: 0;
 }
