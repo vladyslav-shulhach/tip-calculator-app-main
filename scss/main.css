@@ -139,6 +139,11 @@ body header {
     transform: translateY(-4.5rem);
   }
 }
+@media (min-width: 1440px) {
+  body header {
+    transform: translateY(-5.5rem);
+  }
+}
 @media (min-width: 1024px) and (max-height: 800px) {
   body header {
     transform: translateY(-2.5rem);
@@ -152,11 +157,6 @@ body header {
 @media (min-width: 1024px) and (max-height: 600px) {
   body header {
     transform: translateY(-0.5rem);
-  }
-}
-@media (min-width: 1440px) {
-  body header {
-    transform: translateY(-5.5rem);
   }
 }
 body main {
