@@ -38,9 +38,11 @@ body {
     @media (min-width: $breakpoint-large) and (max-height: 800px) {
       transform: translateY(-2.5rem);
     }
+
     @media (min-width: $breakpoint-large) and (max-height: 700px) {
       transform: translateY(-1.5rem);
     }
+
     @media (min-width: $breakpoint-large) and (max-height: 600px) {
       transform: translateY(-0.5rem);
     }
@@ -55,45 +57,18 @@ body {
     align-items: center;
     gap: 38px;
     box-shadow: 0 36px 36px rgba(143, 192, 198, 0.5);
-  }
 
-  footer {
-    background-color: $color-white;
-    padding: 1rem;
-    font-size: $font-size-xsmall;
-    text-align: center;
-    flex-shrink: 0;
-    margin-top: auto;
-
-    a {
-      color: $color-attribution-link;
-      text-decoration: none;
-      font-weight: $font-weight-bold;
-    }
-  }
-
-  @media (min-width: $breakpoint-small) {
-    main {
+    @media (min-width: $breakpoint-small) {
       padding: 3.5rem 3rem;
       gap: 48px;
     }
-  }
 
-  @media (min-width: $breakpoint-medium) {
-    main {
+    @media (min-width: $breakpoint-medium) {
       padding: 4.5rem 3rem;
       gap: 56px;
     }
-  }
 
-  @media (min-width: $breakpoint-large) {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    main {
+    @media (min-width: $breakpoint-large) {
       width: 57.75rem;
       padding: 32px;
       flex-direction: row;
@@ -106,13 +81,41 @@ body {
         width: 50%;
       }
     }
+  }
 
-    footer {
+  footer {
+    background-color: $color-white;
+    padding: 1rem;
+    font-size: $font-size-xsmall;
+    text-align: center;
+    flex-shrink: 0;
+    margin-top: auto;
+    width: 100%;
+
+    a {
+      color: $color-attribution-link;
+      text-decoration: none;
+      font-weight: $font-weight-bold;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    @media (min-width: $breakpoint-large) {
       background-color: transparent;
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
     }
+  }
+
+  @media (min-width: $breakpoint-large) {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 }
