@@ -29,22 +29,22 @@ body {
       margin-top: 0;
       margin-bottom: 0;
       transform: translateY(-4.5rem);
-
-      @media (max-height: 800px) {
-        transform: translateY(-2.5rem);
-      }
-
-      @media (max-height: 700px) {
-        transform: translateY(-1.5rem);
-      }
-
-      @media (max-height: 600px) {
-        transform: translateY(-0.5rem);
-      }
     }
 
     @media (min-width: $breakpoint-extra-large) {
       transform: translateY(-5.5rem);
+    }
+
+    @media (min-width: $breakpoint-large) and (max-height: 800px) {
+      transform: translateY(-2.5rem);
+    }
+
+    @media (min-width: $breakpoint-large) and (max-height: 700px) {
+      transform: translateY(-1.5rem);
+    }
+
+    @media (min-width: $breakpoint-large) and (max-height: 600px) {
+      transform: translateY(-0.5rem);
     }
   }
 
