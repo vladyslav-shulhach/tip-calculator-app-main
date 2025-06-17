@@ -111,11 +111,53 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 body header {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
   text-align: center;
+}
+@media (min-width: 576px) {
+  body header {
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem;
+  }
+}
+@media (min-width: 768px) {
+  body header {
+    margin-top: 4.5rem;
+    margin-bottom: 4.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  body header {
+    margin-top: 0;
+    margin-bottom: 0;
+    transform: translateY(-4.5rem);
+  }
+}
+@media (min-width: 1440px) {
+  body header {
+    transform: translateY(-5.5rem);
+  }
+}
+@media (min-width: 1024px) and (max-height: 800px) {
+  body header {
+    transform: translateY(-2.5rem);
+  }
+}
+@media (min-width: 1024px) and (max-height: 700px) {
+  body header {
+    transform: translateY(-1.5rem);
+  }
+}
+@media (min-width: 1024px) and (max-height: 600px) {
+  body header {
+    transform: translateY(-0.5rem);
+  }
 }
 body main {
   border-radius: 24px 24px 0 0;
@@ -132,6 +174,7 @@ body footer {
   font-size: 0.875rem;
   text-align: center;
   flex-shrink: 0;
+  margin-top: auto;
 }
 body footer a {
   color: hsl(228, 45%, 44%);
@@ -139,20 +182,12 @@ body footer a {
   font-weight: 700;
 }
 @media (min-width: 576px) {
-  body header {
-    margin-top: 3.5rem;
-    margin-bottom: 3.5rem;
-  }
   body main {
     padding: 3.5rem 3rem;
     gap: 48px;
   }
 }
 @media (min-width: 768px) {
-  body header {
-    margin-top: 4.5rem;
-    margin-bottom: 4.5rem;
-  }
   body main {
     padding: 4.5rem 3rem;
     gap: 58px;
@@ -165,10 +200,6 @@ body footer a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
-  body header {
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
   }
   body main {
     width: 57.75rem;
@@ -184,18 +215,10 @@ body footer a {
   }
   body footer {
     background-color: transparent;
-  }
-}
-@media (min-width: 1024px) and (min-height: 700px) {
-  body header {
-    margin-top: 3.5rem;
-    margin-bottom: 3.5rem;
-  }
-}
-@media (min-width: 1024px) and (min-height: 1000px) {
-  body header {
-    margin-top: 5.5rem;
-    margin-bottom: 5.5rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
   }
 }
 
@@ -369,7 +392,8 @@ input::placeholder {
 .form {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 36px;
+  padding-left: 24px;
 }
 .form .tip__buttons {
   margin-top: 12px;
@@ -407,7 +431,7 @@ input::placeholder {
 @media (min-width: 1024px) {
   .result {
     padding: 58px 38px 40px 38px;
-    height: 24.5rem;
+    height: 26rem;
     justify-content: space-between;
   }
 }
