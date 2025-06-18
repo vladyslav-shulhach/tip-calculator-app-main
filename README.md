@@ -27,12 +27,12 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./preview.png)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [here](https://your-solution-url.com)
+- Live Site URL: [here](https://your-live-site-url.com)
 
 ## My process
 
@@ -49,9 +49,13 @@ Users should be able to:
 
 ### What I learned
 
-#### Implementing robust and user-friendly numeric input validation in JavaScript
+#### Structuring JavaScript for clarity and modularity
 
-To ensure only valid numbers are entered (e.g., for bill, tip, and people fields), I created a utility function that filters input and prevents invalid characters. This improves both user experience and data integrity.
+In this project, I focused on organising JavaScript logic into small, reusable functions and attaching event listeners that handle all key user interactions. Each function has a clear purpose, whether it's validating inputs, updating state or recalculating results. This makes the codebase easier to maintain and extend. This modular approach is clearly the best way to reduce side effects and keep responsibilities clearly separated.
+
+#### Designing robust numeric input validation
+
+To ensure clean and accurate data input, particularly for numeric fields such as 'bill', 'tip' and 'number of people', I developed a utility function called `filterNumericInput`. This filters out all non-numeric characters and can optionally allow a single decimal point. This function guarantees that the app will always receive valid numeric values, regardless of how the user interacts with the input fields.
 
 ```javascript
 function filterNumericInput(value, allowDecimal = false) {
@@ -62,26 +66,67 @@ function filterNumericInput(value, allowDecimal = false) {
   }
   return filtered;
 }
-
-// Usage in input event:
-billInput.addEventListener("input", function () {
-  this.value = filterNumericInput(this.value, true);
-  // ...other logic...
-});
 ```
 
-#### Improving accessibility with `aria-live` for error messages
+However, relying on input filtering alone is not enough, since users can still paste or type in invalid characters. That's why I also implemented comprehensive input event listeners.
 
-To make error messages accessible to screen readers, I added `aria-live="polite"` to error label elements. This ensures that users with assistive technologies are notified of validation errors in real time.
+#### Handling real-time validation with event listeners
+
+The app's input fields have event listeners for multiple events, including `input`, `keydown`, `focus` and `blur`, which allows for precise control over user behaviour and feedback.
+
+- **Bill input**:
+
+  - `input`: Updates internal state and triggers recalculation.
+  - `keydown`: Prevents invalid characters and multiple decimal points.
+  - Error label is shown for invalid characters and hidden upon correction.
+
+- **Tip buttons**:
+
+  - `click`: Sets the tip percentage, deactivates the custom tip, updates the UI, and recalculates.
+
+- **Custom tip input**:
+
+  - `input`: Filters input to digits and one dot, updates tip, recalculates.
+  - `focus` / `blur`: Handles placeholder UX.
+  - `keydown`: Blocks non-numeric characters and multiple dots.
+
+- **People input**:
+
+  - `input`: Filters digits, removes leading zeros, updates state, and validates zero input.
+  - `focus`: Clears input for easier editing.
+  - `keydown`: Blocks invalid characters, shows error if needed.
+
+- **Placeholder logic**:
+
+  - Ensures placeholders are removed on input and restored when cleared.
+
+- **Reset button**:
+
+  - `click`: Clears all inputs and UI states, restoring the calculator to its default state.
+
+This combination of filtering and event listeners provides a smooth, interactive experience and prevents invalid inputs from reaching the calculation logic.
+
+#### Creating dynamic error messages for better feedback
+
+To improve usability, I created inline error labels for each relevant input field and updated them dynamically based on validation outcomes. For example:
+
+- Entering letters in numeric fields shows "Only numbers allowed."
+- Entering `0` for people shows "Can't be zero."
+
+These labels update or hide in real time as the user corrects input, reducing confusion and helping users fix mistakes immediately.
+
+#### Improving accessibility with `aria-live` regions
+
+To support users relying on assistive technologies, I added `aria-live="polite"` to all error message containers. This ensures that screen readers announce validation feedback without requiring users to navigate away from the input field.
 
 ```html
 <span class="people__error-label" aria-live="polite"></span>
 <span class="bill__invalid-label" aria-live="polite"></span>
 ```
 
-#### Managing UI state and error feedback for a better user experience
+#### Managing reset logic and UI state intelligently
 
-I managed UI state by tracking input values and error states, updating the UI and error messages dynamically. For example, the reset button is only enabled when any field is not at its default value, and error messages are shown or hidden based on validation results.
+To avoid clutter and improve clarity, I made the reset button only active when at least one field is filled or changed. This involved checking the state of the bill, tip, and people inputs dynamically.
 
 ```javascript
 function setResetButtonState() {
@@ -94,7 +139,7 @@ function setResetButtonState() {
 }
 ```
 
-This approach provides immediate feedback and prevents invalid form submissions, resulting in a smoother and more intuitive user experience.
+This makes sure that the reset option only appears when needed and keeps the interface clean.
 
 ### Continued development
 
